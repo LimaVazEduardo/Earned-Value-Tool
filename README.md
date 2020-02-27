@@ -1,6 +1,8 @@
 # Earned-Value-Tool
 
-Are you studying for the PMI-PMP Exam? Are you facing difficulty to understand project Earned Value?
+Are you studying for the PMI-PMP Exam? 
+
+Are you facing difficulty to understand project Earned Value?
 
 If so, here is a good tool to help you out. This tool emulates "The Fence" exercise and prompts you to insert project values like: budget, working day, money spent on each side of the fence.
 
