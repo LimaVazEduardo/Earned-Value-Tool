@@ -1,0 +1,368 @@
+    <script>
+      function sendText(e) {
+        e.preventDefault();
+      
+      function myHandler(response){
+        console.log(response);
+        
+        //==============================================
+        var budget     = response[0].toFixed(2);
+        var budget_4   = response[1];
+        var wday       = response[2];
+        var fence1     = response[3].toFixed(2);
+        var fence2     = response[4].toFixed(2);
+        var fence3     = response[5].toFixed(2);
+        var fence4     = response[6].toFixed(2);
+        var money1     = response[7].toFixed(2);
+        var money2     = response[8].toFixed(2);
+        var money3     = response[9].toFixed(2);
+        var money4     = response[10].toFixed(2);
+        var spent1     = response[11].toFixed(2);
+        var spent2     = response[12].toFixed(2);
+        var spent3     = response[13].toFixed(2);
+        var spent4     = response[14].toFixed(2);
+        var BAC        = response[15].toFixed(2);
+        var studentBAC = response[16].toFixed(2);
+        var studentPV  = response[17].toFixed(2);
+        var studentEV  = response[18].toFixed(2);
+        var studentAC  = response[19].toFixed(2);
+        var studentCV  = response[20].toFixed(2);
+        var studentCPI = response[21].toFixed(3);
+        var studentSV = response[22].toFixed(2);
+        var studentSPI = response[23].toFixed(3);
+        var studentEAC = response[24].toFixed(2);
+        var studentEAC2 = response[25].toFixed(2);
+        var studentEAC3 = response[26].toFixed(2);
+        var studentETC = response[27].toFixed(2);
+        var studentVAC = response[28].toFixed(2);
+        //==============================================
+        
+        
+        //==============================================
+        // Total budget
+        //==============================================
+        document.getElementById("budget").innerHTML = budget;
+        
+        //==============================================
+        // Budget / 4
+        //==============================================
+        for(var i=1; i<= 4; i++){
+          document.getElementById("bud_4"+i).innerHTML = budget_4.toFixed(2);
+        }
+        
+        //==============================================
+        // Work day and Planned day
+        //==============================================
+        for(var j=1; j<= wday; j++){
+          document.getElementById("planned"+j).innerHTML = budget_4.toFixed(2);
+        }
+        
+        //==============================================
+        // Work day and Total Planned day
+        //==============================================
+        var totalPlanned = 0;
+        for(i=1; i <= wday; i++){
+          totalPlanned += budget_4;
+        }
+        document.getElementById("totalPlanned").innerHTML = totalPlanned.toFixed(2);
+        
+        
+        //==============================================
+        // Work day and day x
+        //==============================================
+        for(var k=1; k<= wday; k++){
+          document.getElementById("day"+k).innerHTML = "day"+k;
+        }
+        
+        //==============================================
+        // Work day and progress %
+        //==============================================
+        for(var i = 1; i <= 4; i++){
+          j = 3 + i - 1;
+          document.getElementById("prog"+i).innerHTML = Math.round(response[j]*100) + "%";
+        }
+        
+        //==============================================
+        // Work day and money 
+        //==============================================
+        for(i=1; i <= 4; i++){
+          var j = i + 7 - 1;
+          console.log(j);
+          document.getElementById("spent"+i).innerHTML = response[j].toFixed(2);
+        }
+        
+        //==============================================
+        // Work day and Total money 
+        //==============================================
+        var totalSpent = 0;
+        for(i=1; i <= 4; i++){
+          var j = i + 7 - 1;
+          totalSpent += response[j];
+        }
+        document.getElementById("totalSpent").innerHTML = totalSpent.toFixed(2);
+        
+        //==============================================
+        // Work day and percent of done
+        //==============================================
+        for(var i = 1; i <= 4; i++){
+          j = 3 + i - 1;
+          document.getElementById("done"+i).innerHTML = ((response[j]*100) / 4).toFixed(2);
+        }
+        
+        //==============================================
+        // Work day and Total percent of done
+        //==============================================
+        var totalDone = 0;
+        for(var i = 1; i <= 4; i++){
+          j = 3 + i - 1;
+          totalDone += response[j]*100 / 4;
+        }
+        document.getElementById("totalDone").innerHTML = totalDone.toFixed(2) + "%";
+        
+        
+        //==============================================
+        // BAC
+        //==============================================
+        var BAC = response[15].toFixed(2);
+        var studentBAC = response[16].toFixed(2);
+        document.getElementById("BAC").innerHTML = BAC;
+        document.getElementById("studentBAC").innerHTML = studentBAC;
+        if(BAC != studentBAC){
+          document.getElementById("checkBAC").innerHTML = "oops";
+        }else{
+          document.getElementById("checkBAC").innerHTML = "great :)";
+        }
+        document.getElementById("descBAC").innerHTML = "Our project budget is [$" + BAC + "].";
+        
+        //==============================================
+        // PV
+        //==============================================
+        var PV = totalPlanned.toFixed(2);
+        var studentPV = response[17].toFixed(2);
+        document.getElementById("PV").innerHTML = PV;
+        document.getElementById("studentPV").innerHTML = studentPV;
+        if(PV != studentPV){
+          document.getElementById("checkPV").innerHTML = "oops";
+        }else{
+          document.getElementById("checkPV").innerHTML = "great :)";
+        }
+        document.getElementById("descPV").innerHTML = "We should have done [$"+ PV + "] worth of work.";
+        
+        //==============================================
+        // EV
+        //==============================================
+        var EV = (totalDone/100 * BAC).toFixed(2);
+        var studentEV = response[18].toFixed(2);
+        document.getElementById("EV").innerHTML = EV;
+        document.getElementById("studentEV").innerHTML = studentEV;
+        if(EV != studentEV){
+          document.getElementById("checkEV").innerHTML = "oops";
+        }else{
+          document.getElementById("checkEV").innerHTML = "great :)";
+        }
+        document.getElementById("descEV").innerHTML = "We have actually completed:<br>" + totalDone + "% * " + BAC + " = $" + EV + " worth of work.";
+        
+        //==============================================
+        // AC
+        //==============================================
+        var AC = totalSpent.toFixed(2);
+        document.getElementById("AC").innerHTML = AC;
+        document.getElementById("studentAC").innerHTML = studentAC;
+        if(AC != studentAC){
+          document.getElementById("checkAC").innerHTML = "oops";
+        }else{
+          document.getElementById("checkAC").innerHTML = "great :)";
+        }
+        document.getElementById("descAC").innerHTML = "Actual Cost up to day [" + wday + "]";
+        
+        //==============================================
+        // CV
+        //==============================================
+        var CV = (EV - AC).toFixed(2);
+        document.getElementById("CV").innerHTML = CV;
+        document.getElementById("studentCV").innerHTML = studentCV;
+        if(CV != studentCV){
+          document.getElementById("checkCV").innerHTML = "oops";
+        }else{
+          document.getElementById("checkCV").innerHTML = "great :)";
+        }
+        if(CV < 0){
+          document.getElementById("descCV").innerHTML = "Cost Variation = " + EV + "-" + AC + " = " + CV + "<br><b>Over budget <br>:(</b>";
+        }else{
+          document.getElementById("descCV").innerHTML = "Cost Variation = " + EV + "-" + AC + " = " + CV + "<br><b>Under budget <br>:)</b>";
+        }
+        
+        //==============================================
+        // CPI
+        //==============================================
+        var CPI = (EV / AC).toFixed(3);
+        document.getElementById("CPI").innerHTML = CPI;
+        document.getElementById("studentCPI").innerHTML = studentCPI;
+        if(CPI != studentCPI){
+          document.getElementById("checkCPI").innerHTML = "oops";
+        }else{
+          document.getElementById("checkCPI").innerHTML = "great :)";
+        }
+        if(CPI < 1){
+          document.getElementById("descCPI").innerHTML = "Cost Performance Index: " + EV + "/" + AC + " = " + CPI + "<br><b>For every $1 invested, we are getting only [$" +  CPI +"] cents <br>:(</b>";
+        }else{
+          document.getElementById("descCPI").innerHTML = "Cost Performance Index: " + EV + "/" + AC + " = " + CPI + "<br><b>For every $1 invested, we are getting [$" +  CPI +"] cents <br>:)</b>";
+        }
+        
+        //==============================================
+        // SV
+        //==============================================
+        var SV = (EV - PV).toFixed(2);
+        document.getElementById("SV").innerHTML = SV;
+        document.getElementById("studentSV").innerHTML = studentSV;
+        if(SV != studentSV){
+          document.getElementById("checkSV").innerHTML = "oops";
+        }else{
+          document.getElementById("checkSV").innerHTML = "great :)";
+        }
+        if(SV < 0){
+          document.getElementById("descSV").innerHTML = "Schedule Variance: " + EV + "-" + PV + " = " + SV + "<br><b>Behind Schedule <br>:(</b>";
+        }else{
+          document.getElementById("descSV").innerHTML = "Schedule Variance: " + EV + "-" + PV + " = " + SV + "<br><b>Ahead of Schedule <br>:)</b>";
+        }
+        
+        
+        //==============================================
+        // SPI
+        //==============================================
+        var SPI = (EV / PV).toFixed(3);
+        document.getElementById("SPI").innerHTML = SPI;
+        document.getElementById("studentSPI").innerHTML = studentSPI;
+        if(SPI != studentSPI){
+          document.getElementById("checkSPI").innerHTML = "oops";
+        }else{
+          document.getElementById("checkSPI").innerHTML = "great :)";
+        }
+        if(SPI < 1){
+          document.getElementById("descSPI").innerHTML = "Schedule Performance Index: " + EV + "/" + PV + " = " + SPI + "<br><b>We are progressing at ["+ SPI*100 + " %] percent of the rate planned <br>:(</b>";
+        }else{
+          document.getElementById("descSPI").innerHTML = "Schedule Performance Index: " + EV + "/" + PV + " = " + SPI + "<br><b>We are progressing at ["+ SPI*100 + " %] percent of the rate planned <br>:)</b>";
+        }
+        
+        //==============================================
+        // EAC
+        //==============================================
+        var EAC = (BAC / CPI).toFixed(2);
+        document.getElementById("EAC").innerHTML = EAC;
+        document.getElementById("studentEAC").innerHTML = studentEAC;
+        if(EAC != studentEAC){
+          document.getElementById("checkEAC").innerHTML = "oops";
+        }else{
+          document.getElementById("checkEAC").innerHTML = "great :)";
+        }
+        if(EAC > BAC){
+          document.getElementById("descEAC").innerHTML = "Estimate at Completion <br>BAC/CPI: " + BAC + "/" + CPI + " = " + EAC + "<br><b>We currently estimate that the total project will cost [$"+ EAC + "] <br>:(</b>";
+        }else{
+          document.getElementById("descEAC").innerHTML = "Estimate at Completion <br>BAC/CPI: " + BAC + "/" + CPI + " = " + EAC + "<br><b>We currently estimate that the total project will cost [$"+ EAC + "] <br>:)</b>";
+        }
+        
+        //==============================================
+        // EAC2
+        //==============================================
+        var EAC2 =  (AC*1 + (BAC*1 - EV*1)).toFixed(2);
+        document.getElementById("EAC2").innerHTML = EAC2;
+        document.getElementById("studentEAC2").innerHTML = studentEAC2;
+        if(EAC2 != studentEAC2){
+          document.getElementById("checkEAC2").innerHTML = "oops";
+        }else{
+          document.getElementById("checkEAC2").innerHTML = "great :)";
+        }
+        if(EAC2 > BAC){
+          document.getElementById("descEAC2").innerHTML = "Estimate at Completion-2 <br>AC+(BAC-EV): " + AC + "+ (" + BAC + " - " + EV + ") = "+ EAC2 + "<br><b>We currently estimate that the total project will cost [$"+ EAC2 + "] <br>:(</b>";
+        }else{
+          document.getElementById("descEAC2").innerHTML = "Estimate at Completion-2 <br>AC+(BAC-EV): " + AC + "+ (" + BAC + " - " + EV + ") = "+ EAC2 + "<br><b>We currently estimate that the total project will cost [$"+ EAC2 + "] <br>:)</b>";
+        }
+        
+        //==============================================
+        // EAC3
+        //==============================================
+        var EAC3 =  (AC*1 + ((BAC*1 - EV*1)/(CPI*SPI))).toFixed(2);
+        document.getElementById("EAC3").innerHTML = EAC3;
+        document.getElementById("studentEAC3").innerHTML = studentEAC3;
+        if(EAC3 != studentEAC3){
+          document.getElementById("checkEAC3").innerHTML = "oops";
+        }else{
+          document.getElementById("checkEAC3").innerHTML = "great :)";
+        }
+        if(EAC3 > BAC){
+          document.getElementById("descEAC3").innerHTML = "Estimate at Completion-3 <br>AC + ((BAC - EV)/(CPI*SPI)): " + AC + "+ ((" + BAC + " - " + EV + ")) / (("+ CPI+"*"+SPI + ")):"+"<br><b>We currently estimate that the total project will cost [$"+ EAC3 + "] <br>:(</b>";
+        }else{
+          document.getElementById("descEAC3").innerHTML = "Estimate at Completion-3 <br>AC + ((BAC - EV)/(CPI*SPI)): " + AC + "+ ((" + BAC + " - " + EV + ")) / (("+ CPI+"*"+SPI + ")):"+"<br><b>We currently estimate that the total project will cost [$"+ EAC3 + "] <br>:)</b>";
+        }
+        
+        //==============================================
+        // ETC
+        //==============================================
+        var ETC =  (EAC*1 - AC*1).toFixed(2);
+        document.getElementById("ETC").innerHTML = ETC;
+        document.getElementById("studentETC").innerHTML = studentETC;
+        if(ETC != studentETC){
+          document.getElementById("checkETC").innerHTML = "oops";
+        }else{
+          document.getElementById("checkETC").innerHTML = "great :)";
+        }
+        document.getElementById("descETC").innerHTML = "Estimate to Complete <br>EAC - AC: " + EAC + " - " + AC + "<br><b>We need to spend more [$"+ ETC + "] to finish the project. </b>";
+        
+        
+        //==============================================
+        // VAC
+        //==============================================
+        var VAC =  (BAC*1 - EAC*1).toFixed(2);
+        document.getElementById("VAC").innerHTML = VAC;
+        document.getElementById("studentVAC").innerHTML = studentVAC;
+        if(VAC != studentVAC){
+          document.getElementById("checkVAC").innerHTML = "oops";
+        }else{
+          document.getElementById("checkVAC").innerHTML = "great :)";
+        }
+        if(VAC < 0){
+          document.getElementById("descVAC").innerHTML = "Variance at Completion <br>BAC - EAC: " + BAC + " - " + EAC + "<br><b>We currently expect to be [$"+ VAC + "] over budget when the project is completed.<br>:(</b>";
+        }else{
+          document.getElementById("descVAC").innerHTML = "Variance at Completion <br>BAC - EAC: " + BAC + " - " + EAC + "<br><b>We currently expect to be [$"+ VAC + "] under budget when the project is completed.<br>:)</b>";
+        }
+        
+        
+          
+      }// close myHandler
+               
+        function onFailure(error){
+          console.log(error);
+        } 
+        
+        var data = {
+          budget: e.target['budget'].value,
+          wday: e.target['wday'].value,
+          fence1: e.target['fence1'].value,
+          money1: e.target['money1'].value,
+          fence2: e.target['fence2'].value,
+          money2: e.target['money2'].value,
+          fence3: e.target['fence3'].value,
+          money3: e.target['money3'].value,
+          fence4: e.target['fence4'].value,
+          money4: e.target['money4'].value,
+          BAC: e.target['BAC'].value,
+          PV: e.target['PV'].value,
+          EV: e.target['EV'].value,
+          AC: e.target['AC'].value,
+          CV: e.target['CV'].value,
+          CPI: e.target['CPI'].value,
+          SV: e.target['SV'].value,
+          SPI: e.target['SPI'].value,
+          EAC: e.target['EAC'].value,
+          EAC2: e.target['EAC2'].value,
+          EAC3: e.target['EAC3'].value,
+          ETC: e.target['ETC'].value,
+          VAC: e.target['VAC'].value
+          }
+      
+        google.script.run
+          .withSuccessHandler(myHandler)
+          .withFailureHandler(onFailure)
+          .calcEV(data);
+      }
+    </script>
