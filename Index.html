@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="google-site-verification" content="Lf1_bTtms-rNBbAPZ6fr4l1xW-9hZlQFXBpPghHQoW4" />
+    <base target="_top">
+    <?!= include('css'); ?>
+    <?!= include('gtag'); ?>
+  </head>
+  <body>
+    <h1>Earned Value Tool</h1>
+    <br><br>
+    
+    <table border="0" width="50%">
+      <tr>
+        <td>
+          <a href="https://rmcls.com/" target="_blank">
+            <img src="https://rmcls.com/assets/images/product/pmp-exam_prep_8ed_updated_book.jpg" style="width:118px;height:128px;">
+          </a>
+        </td>
+        <td>&nbsp;</td>
+        <td>This tool is based on the <i>Fence</i> exercise extracted from: PMP Exam Prep, page 271 and 273
+          <br>
+          <br>M, R. (2015). Rita Mulcahy's PMP Exam Prep (8th ed., Pages 271-273). Minnetonka, MN: RMC Learning Solutions.
+        </td>
+      </tr>
+    </table>
+    
+    <table id="instructions" border="0" width="100%">
+      <tr>
+        <td width="40%"><h2>The Fence Exercise:</h2></td>
+        <td>&nbsp;</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><p>
+      You have a project to build a new fence. The fence is four sided. Each side is to take one day
+      to build, and $1000 has been budgeted per side.  
+      Today is the end of day 3.
+    </p>
+        </td>
+        <td>&nbsp;</td>
+        <td>
+          <table id="fence" border="0">
+            <tr>
+              <td bgcolor="red">&nbsp;</td>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+              <td bgcolor="red">&nbsp;</td>
+            </tr>
+            <tr>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+            </tr>
+            <tr>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td><img src="https://cdn.pixabay.com/photo/2017/09/29/11/57/dog-2798805_1280.png" style="width:20px;height:15px;"></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+            </tr>
+            <tr>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+            </tr>
+            <tr>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+            </tr>
+            <tr>
+              <td bgcolor="red">&nbsp;</td>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+              <td bgcolor="lightsteelblue">&nbsp;</td>
+              <td bgcolor="red">&nbsp;</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <li>Day 1 is complete and it was spent $1000.</li>
+            <li>Day 2 is complete and it was spent $1000.</li>
+            <li>Day 3 is 50% done and it was spent $600.</li>
+            <li>Day 4 has not yet been started.</li>
+          </ul>
+        </td>
+        <td>&nbsp;</td>
+        <td></td>
+      </tr>
+    </table>
+
+    
+    <form onsubmit = "sendText(event)">
+      <fieldset style="width:700px">
+      <legend>Input project data:</legend>
+      <div style="overflow-x:auto;">
+      <table id="input" border="0" >
+        <tr>
+          <td>What is the total project budget?</td>
+          <td><input type="float" name="budget" value="4000" required></td>
+          <td>&nbsp;</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Which working day is you project on?</td>
+          <td>
+            <select name="wday">
+              <option value=1>day 1</option>
+              <option value=2>day 2</option>
+              <option value=3 selected>day 3</option>
+              <option value=4>day 4</option>
+            </select>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>What is the % progress of fence 1?</td>
+          <td><input type="number" name="fence1" min="" max="100" value="100">%</td>
+          <td>&nbsp;</td>
+          <td>Money spent 1</td>
+          <td><input type="number" name="money1"  value="1000"></td>
+        </tr>
+        <tr>
+          <td>What is the % progress of fence 2?</td>
+          <td><input type="number" name="fence2" min="" max="100" value="100">%</td>
+          <td>&nbsp;</td>
+          <td>Money spent 2</td>
+          <td><input type="number" name="money2"  value="1000"></td>
+        </tr>
+        <tr>
+          <td>What is the % progress of fence 3?</td>
+          <td><input type="number" name="fence3" min="" max="100" value="50">%</td>
+          <td>&nbsp;</td>
+          <td>Money spent 3</td>
+          <td><input type="number" name="money3" value="600"></td>
+        </tr>
+        <tr>
+          <td>What is the % progress of fence 4?</td>
+          <td><input type="number" name="fence4" min="" max="100" value="">%</td>
+          <td>&nbsp;</td>
+          <td>Money spent 4</td>
+          <td><input type="number" name="money4" value=""></td>
+        </tr>
+      </table>
+      </div>
+      </fieldset>
+      
+      <br>
+      <ul>
+        <li>Do the calculations to <b>three</b> decimal places on the exercises.</li>
+        <li>Insert your answers on the fields below and then check your answers by clicking the button <i>"Check your answers"</i></li>
+        <li>If you need to redo the calculations, please refresh (F5) the page.</li>
+      </ul>
+      
+      <br>
+      
+      <fieldset style="width:700px">
+      <legend>Now, provide Earned Value Measurements:</legend>
+      <div style="overflow-x:auto;">
+      <table id="student" >
+        <tr>
+          <td>BAC</td>
+          <td><input type="float" name="BAC" value="" >%</td>
+          <td>&nbsp;</td>
+          <td>PV</td>
+          <td><input type="float" name="PV" value="" ></td>
+          <td>&nbsp;</td>
+          <td>EV</td>
+          <td><input type="float" name="EV" value="" ></td>
+          <td>&nbsp;</td>
+          <td>AC</td>
+          <td><input type="float" name="AC" value="" ></td>
+        </tr>
+        <tr>
+          <td>CV</td>
+          <td><input type="float" name="CV" value="" >%</td>
+          <td>&nbsp;</td>
+          <td>CPI</td>
+          <td><input type="float" name="CPI" value="" ></td>
+          <td>&nbsp;</td>
+          <td>SV</td>
+          <td><input type="float" name="SV" value="" ></td>
+          <td>&nbsp;</td>
+          <td>SPI</td>
+          <td><input type="float" name="SPI" value="" ></td>
+        </tr>
+        <tr>
+          <td>EAC</td>
+          <td><input type="float" name="EAC" value="" >%</td>
+          <td>&nbsp;</td>
+          <td>EAC'</td>
+          <td><input type="float" name="EAC2" value="" ></td>
+          <td>&nbsp;</td>
+          <td>EAC''</td>
+          <td><input type="float" name="EAC3" value="" ></td>
+          <td>&nbsp;</td>
+          <td>ETC</td>
+          <td><input type="float" name="ETC" value="" ></td>
+        </tr>
+        <tr>
+          <td>VAC</td>
+          <td><input type="float" name="VAC" value="" ></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><input type="submit" value="Check your answers"></td>
+        </tr>
+      </table>
+      </div>
+      </fieldset>
+    </form>
+    
+
+    
+    <!--  Progress -->
+    <br>
+    <br>
+    <div style="overflow-x:auto;">
+    <table id="result" border="0" width="80%">
+      <tr>
+        <th colspan="3">Progress</th>
+        <th>Budget</th>
+        <th>Planned/day</th>
+        <th>Spent</th>
+        <th>% done</th>
+      </tr>
+      <tr>
+        <td>Fence 1</td>
+        <td><div id="day1"></div></td>
+        <td><div id="prog1"></div></td>
+        <td><div id="bud_41"></div></td>
+        <td><div id="planned1"></div></td>
+        <td><div id="spent1"></div></td>
+        <td><div id="done1"></div></td>
+      </tr>
+      <tr>
+        <td>Fence 2</td>
+        <td><div id="day2"></div></td>
+        <td><div id="prog2"></div></td>
+        <td><div id="bud_42"></div></td>
+        <td><div id="planned2"></div></td>
+        <td><div id="spent2"></div></td>
+        <td><div id="done2"></div></td>
+      </tr>
+      <tr>
+        <td>Fence 3</td>
+        <td><div id="day3"></div></td>
+        <td><div id="prog3"></div></td>
+        <td><div id="bud_43"></div></td>
+        <td><div id="planned3"></div></td>
+        <td><div id="spent3"></div></td>
+        <td><div id="done3"></div></td>
+      </tr>
+      <tr>
+        <td>Fence 4</td>
+        <td><div id="day4"></div></td>
+        <td><div id="prog4"></div></td>
+        <td><div id="bud_44"></div></td>
+        <td><div id="planned4"></div></td>
+        <td><div id="spent4"></div></td>
+        <td><div id="done4"></div></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><b><div id="budget"></div></b></td>
+        <td><b><div id="totalPlanned"></div></b></td>
+        <td><b><div id="totalSpent"></div></b></td>
+        <td><b><div id="totalDone"></div></b></td>
+      </tr>
+    </table>
+    </div>
+    
+    <br>
+    <p>* Read carefully the <i>Interpretation</i> column below.</p>
+    
+    <!--  Assessment -->
+    <div style="overflow-x:auto;">
+    <table id="assessment" border="0" width="80%">
+      <tr>
+        <th colspan="2">Earned Value Measurements</th>
+        <th>Your answer</th>
+        <th>Check your answer </th>
+        <th>Expected answer </th>
+        <th>Interpretation </th>
+      </tr>
+      <tr>
+        <td>BAC</td><td>Budget at Completion</td>
+        <td><div id="studentBAC"></div></td>
+        <td><div id="checkBAC"></div></td>
+        <td><div id="BAC"></div></td>
+        <td><div id="descBAC"></div></td>
+      </tr>
+      <tr>
+        <td>PV</td><td>Planned Value</td>
+        <td><div id="studentPV"></div></td>
+        <td><div id="checkPV"></div></td>
+        <td><div id="PV"></div></td>
+        <td><div id="descPV"></div></td>
+      </tr>
+      <tr>
+        <td>EV</td><td>Earned Value</td>
+        <td><div id="studentEV"></div></td>
+        <td><div id="checkEV"></div></td>
+        <td><div id="EV"></div></td>
+        <td><div id="descEV"></div></td>
+      </tr>
+      <tr>
+        <td>AC</td><td>Actual Cost</td>
+        <td><div id="studentAC"></div></td>
+        <td><div id="checkAC"></div></td>
+        <td><div id="AC"></div></td>
+        <td><div id="descAC"></div></td>
+      </tr>
+      <tr>
+        <td>CV</td><td>Cost Variation</td>
+        <td><div id="studentCV"></div></td>
+        <td><div id="checkCV"></div></td>
+        <td><div id="CV"></div></td>
+        <td><div id="descCV"></div></td>
+      </tr>
+      <tr>
+        <td>CPI</td><td>Cost Performance Index</td>
+        <td><div id="studentCPI"></div></td>
+        <td><div id="checkCPI"></div></td>
+        <td><div id="CPI"></div></td>
+        <td><div id="descCPI"></div></td>
+      </tr>
+      <tr>
+        <td>SV</td><td>Schedule Variance</td>
+        <td><div id="studentSV"></div></td>
+        <td><div id="checkSV"></div></td>
+        <td><div id="SV"></div></td>
+        <td><div id="descSV"></div></td>
+      </tr>
+      <tr>
+        <td>SPI</td><td>Schedule Performance Index</td>
+        <td><div id="studentSPI"></div></td>
+        <td><div id="checkSPI"></div></td>
+        <td><div id="SPI"></div></td>
+        <td><div id="descSPI"></div></td>
+      </tr>
+      <tr>
+        <td>EAC</td><td>Estimate at Completion</td>
+        <td><div id="studentEAC"></div></td>
+        <td><div id="checkEAC"></div></td>
+        <td><div id="EAC"></div></td>
+        <td><div id="descEAC"></div></td>
+      </tr>
+      <tr>
+        <td>EAC'</td><td>Estimate at Completion</td>
+        <td><div id="studentEAC2"></div></td>
+        <td><div id="checkEAC2"></div></td>
+        <td><div id="EAC2"></div></td>
+        <td><div id="descEAC2"></div></td>
+      </tr>
+      <tr>
+        <td>EAC"</td><td>Estimate at Completion</td>
+        <td><div id="studentEAC3"></div></td>
+        <td><div id="checkEAC3"></div></td>
+        <td><div id="EAC3"></div></td>
+        <td><div id="descEAC3"></div></td>
+      </tr>
+      <tr>
+        <td>ETC</td><td>Estimate to Complete</td>
+        <td><div id="studentETC"></div></td>
+        <td><div id="checkETC"></div></td>
+        <td><div id="ETC"></div></td>
+        <td><div id="descETC"></div></td>
+      </tr>
+      <tr>
+        <td>VAC</td><td>Variance at Completion</td>
+        <td><div id="studentVAC"></div></td>
+        <td><div id="checkVAC"></div></td>
+        <td><div id="VAC"></div></td>
+        <td><div id="descVAC"></div></td>
+      </tr>
+    </table>
+    </div>
+    
+    <br>
+    <br>
+    <ul>Now what would happen to your project (on day 3) if:
+      <li>Side 1: complete, spent $1000.</li>
+      <li>Side 2: complete, spent $900</li>
+      <li>Side 3: 50% done, spent $600</li>
+      <li>Side 4: 75% done, spent $600</li>
+    </ul>
+    <ul>*Refresh the webpage by pressing (F5) and re-enter project data, <br>&nbsp;redo the calculations and see what happens.</ul>
+    
+    <br>
+    <br> 
+    
+    <!-- Author -->
+    <br>
+    <table id="author" width="50%" border="0">
+      <tr>
+        <th colspan="2">Author</th>
+      </tr>
+      <tr>
+        <td>
+          <dl>
+            <dt></dt>
+            <dd><a href="https://www.linkedin.com/in/eduardo1lima/">Eduardo Lima, PMP®, CSM®</a></dd>
+          </dl>
+        </td>
+        <td rowspan="3">
+          <img src="https://pbs.twimg.com/media/DRbtUL6X4AEGLcV.jpg" alt="Mel Bisteka" style="width:160px;height:128px;">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <dl>
+            <dt></dt>
+            <dd>Engineer, programmer, teacher and biker</dd>
+          </dl>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <dl>
+            <dt></dt>
+            <dd>Any comments, feel free to drop me a line: <br><b>lima.vaz.eduardo@gmail.com</b></dd>
+          </dl>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    
+    <?!= include('script'); ?>
+  </body>
+</html>
+
+
