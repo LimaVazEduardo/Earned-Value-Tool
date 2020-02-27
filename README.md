@@ -12,8 +12,8 @@ PS. Thanks for the RMC, https://rmcls.com/ for allowing me to use their content.
 
 
 ```
-Author:        lima.vaz.eduardo@gmail.com
-LinkedIn:      https://www.linkedin.com/in/eduardo1lima/ 
-Original post: https://www.linkedin.com/pulse/earned-value-tool-eduardo-lima-mba-csm-pmp-/
-
+Contacts:
 ```
+###### Author:        lima.vaz.eduardo@gmail.com ######
+###### LinkedIn:      https://www.linkedin.com/in/eduardo1lima/ ######
+###### Original post: https://www.linkedin.com/pulse/earned-value-tool-eduardo-lima-mba-csm-pmp-/ ######
